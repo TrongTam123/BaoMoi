@@ -1,0 +1,54 @@
+﻿@model BaoMoi.Models.Last
+
+@{
+    ViewBag.Title = Model.name;
+    Layout = "/Views/Shared/_MyLayout.cshtml";
+}
+
+<body class="single">
+
+
+    <div id="fh5co-title-box" style="background-image: url(/Content/images/@Model.img); background-position: 50% 90.5px;" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="page-title">
+            <h2>@Model.name</h2>
+            <span>@Model.description</span>
+            
+        </div>
+    </div>
+    <div id="fh5co-single-content" class="container-fluid pb-4 pt-4 paddding">
+        <div class="container paddding">
+            <div class="row mx-0">
+                <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                    <p>
+                        <b>
+                            @Model.chitietup
+                        </b>
+                    </p>
+                    <p>
+                        @Model.chitietup1
+                    </p>
+                    <h3><b>@Model.title</b></h3>
+                    <p>
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.chitietdown.ToString()))
+                    </p>
+                   
+                </div>
+                <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+                    @{ Html.RenderAction("getCategory3", "Default");}
+
+                    @{ Html.RenderAction("getCategory4", "Default");}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid pb-4 pt-5">
+        <div class="container animate-box">
+            @{ Html.RenderAction("getCategory", "Default");}
+        </div>
+    </div>
+
+
+
+</body>
+

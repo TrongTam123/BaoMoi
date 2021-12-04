@@ -1,0 +1,16 @@
+﻿@model List<BaoMoi.Models.Most>
+
+@foreach (var i in Model)
+{
+    <div class="col-5 align-self-center">
+        <a href="/@ViewBag.meta/@i.meta/@i.id">
+            <img src="~/Content/images/@i.img" alt="img"
+                 class="fh5co_most_trading">
+        </a>
+    </div>
+    <div class="col-7 paddding">
+        <div class="most_fh5co_treding_font"> @i.name</div>
+        <div class="most_fh5co_treding_font_123"> @i.description</div>
+    </div>
+}
+

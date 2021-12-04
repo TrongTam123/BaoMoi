@@ -1,0 +1,17 @@
+﻿@model List<BaoMoi.Models.Trending>
+
+@foreach(var i in Model)
+{
+    if( i.categoryid == 19) { 
+    <div class="item px-2">
+        <div class="fh5co_hover_news_img">
+            <div class="fh5co_news_img"><img src="~/Content/images/@i.img" alt="" /></div>
+            <div>
+                <a href="/@ViewBag.meta/@i.meta/@i.id" class="d-block fh5co_small_post_heading"><span class="">@i.name</span></a>
+                <div class="c_g"><i class="fa fa-clock-o"></i> @i.description</div>
+            </div>
+        </div>
+    </div>
+    }
+
+}

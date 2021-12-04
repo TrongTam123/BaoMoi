@@ -1,0 +1,72 @@
+﻿@using BaoMoi.Help
+@model BaoMoi.Models.category2
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+@section _Header
+{
+
+    <link href="~/Areas/admin/Content/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+}
+    <div class="col text-center">
+        <h2>Quản lí Last</h2>
+    </div>
+    <hr />
+        <div id="wrapper">
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content">
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <div class="bs-example" style="text-align:right; padding-bottom:10px;">
+                                    <div class="btn-group">
+                                        @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.Category, " --- Tất cả sản phẩm --- ",
+                                                                                        new { @class = "form-control", @id = "category2" })
+                                    </div>
+                                    <div class="btn-group">
+                                        @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm mới", "Create", "Create", "ad_Lasts", routeValues: new { }, htmlAttributes: new { @class = "btn btn-primary" })
+                                    </div>
+                                </div>
+                                <div id="get_ad_Lasts"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @section _Footer
+{
+            <script src="~/Areas/admin/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="~/Areas/admin/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+            <!-- Page level custom scripts -->
+            <script src="~/Areas/admin/Content/js/demo/datatables-demo.js"></script>
+
+            <script>
+        $(document).ready(function () {
+            function get_ad_Lasts() {
+                var CategoryId = $('#category2').val();
+                $.ajax({
+                    url: '@Url.Action("get_ad_Lasts", "ad_Lasts")',
+                    type: "GET",
+                    data: { id: CategoryId },
+                    success: function (data) {
+                        $("#get_ad_Lasts").html(data);
+                    },
+                    error: function (data) {
+                        alert("something went wrong.");
+                    }
+                });
+            }
+            get_ad_Lasts();
+            $("#category2").change(function () {
+                get_ad_Lasts();
+            })
+        });
+            </script>
+
+        }

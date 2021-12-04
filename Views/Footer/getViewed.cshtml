@@ -1,0 +1,8 @@
+﻿@model IEnumerable<BaoMoi.Models.Viewd>
+
+@foreach (var i in Model)
+{
+    <div class="footer_makes_sub_font"> @i.description</div>
+    <a href="#" class="footer_post pb-4"> @i.name </a>
+}
+

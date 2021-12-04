@@ -1,0 +1,78 @@
+﻿@using BaoMoi.Help
+@model IEnumerable<BaoMoi.Models.Tag>
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                   Tên
+                </th>
+
+
+                <th>
+                    Hiển thị
+                </th>
+                <th>
+                   Vị trí
+                </th>
+                <th>
+                   Ngày cập nhật
+                </th>
+               
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{var Number = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.Raw(Number++)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+
+
+
+                    <td>
+                        @(item.hide.GetValueOrDefault(false) ? "Hiển thị" : "Ẩn")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.order)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.datebegin)
+                    </td>
+                  
+
+                    <td>
+                        <a href="@Url.Action("Edit","Tags", new { id = item.id })" class="btn btn-secondary">
+                            <i class="fas fa-edit"></i> Sửa
+                        </a>
+                        <a href="@Url.Action("Details","Tags", new { id = item.id })" class="btn btn-facebook">
+                            <i class="fas fa-info-square"></i> Chi tiết
+                        </a>
+                        <a href="@Url.Action("Delete","Tags", new { id = item.id })" class="btn btn-google">
+                            <i class="fas fa-edit"></i> Xóa
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+</script>

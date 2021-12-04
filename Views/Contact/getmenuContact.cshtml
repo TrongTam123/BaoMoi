@@ -1,0 +1,9 @@
+﻿@model IEnumerable<BaoMoi.Models.menuContact>
+
+@foreach (var i in Model)
+{
+    <div class="row">
+        <a href="#" class="fh5co_con_123"><i class="@i.detail"></i></a>
+        <a href="#" class="fh5co_con pt-2"> @i.name </a>
+    </div>
+}

@@ -1,0 +1,160 @@
+﻿@model BaoMoi.Models.Tag
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <div class="row" style="background-color:#858796;color:white;">
+            <div class="col text-center">
+                <h2> Edit video </h2>
+            </div>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.Label("Danh mục", htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @*/Html.EditorFor(model => model.categoryid, new { htmlAttributes = new { @class = "form-control" } })/*@
+                        @Html.DropDownListFor(model => model.categoryid3, (SelectList)ViewBag.Category, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.categoryid3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div class="form-group">
+                        @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-10">
+                            @{
+                                bool hide = (Model.hide.GetValueOrDefault(false) ? true : false);
+                            }
+                            @Html.CheckBoxFor(model => hide)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.meta, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.meta, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.meta, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.order, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.order, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.order, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="row" style="padding-left:15px;">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.Label("Chi tiết bài  viết trên ", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.chitietup, new { @class = "form-control", @rows = 3 })
+                        @Html.ValidationMessageFor(model => model.chitietup, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.Label("Chi tiết bài  viết trên1 ", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.chitietup1, new { @class = "form-control", @rows = 3 })
+                        @Html.ValidationMessageFor(model => model.chitietup1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="row" style="padding-left:70px">
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.Label("Chi tiết bài  viết dưới ", htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.chitietdown, new { @class = "form-control", @rows = 3 })
+                        @Html.ValidationMessageFor(model => model.chitietdown, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section _Footer
+{
+    <script src="~/Areas/admin/Content/ckfinder/ckfinder/ckfinder.js"></script>
+    <script src="~/Areas/admin/Content/ckeditor/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+
+        var editor = CKEDITOR.replace("chitietdown");
+        var editor = CKEDITOR.replace("chitietdown", { height: '800px' });
+        customConfig: '/Areas/admin/Content//ckeditor/ckeditor/config.js';
+    </script>
+    <script>
+        $(function () {
+            $("#name").keyup(function () {
+                var text = $.trim($(this).val().toLowerCase());
+                var text_create;
+                text_create = text.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a").replace(/\ /g, '-').replace(/đ/g, "d").replace(/đ/g, "d").replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y").replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u").replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ.+/g, "o").replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ.+/g, "e").replace(/ì|í|ị|ỉ|ĩ/g, "i");
+                $('#meta').val(text_create);
+            }).keyup();
+        });
+    </script>
+}

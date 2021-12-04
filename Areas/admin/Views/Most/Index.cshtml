@@ -1,0 +1,78 @@
+﻿@using BaoMoi.Help
+@model BaoMoi.Models.category4
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+@section _Header
+{
+
+    <link href="~/Areas/admin/Content/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+}
+
+<div class="col text-center">
+    <h2>Quản lí Most Popular</h2>
+</div>
+<hr />
+
+
+
+<div id="wrapper">
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <div class="container-fluid">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="bs-example" style="text-align:right; padding-bottom:10px;">
+                            <div class="btn-group">
+                                @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.Category, " --- Tất cả sản phẩm --- ",
+                                                                                new { @class = "form-control", @id = "category4" })
+                            </div>
+                            <div class="btn-group">
+                                @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm mới", "Create", "Create", "Most", routeValues: new { }, htmlAttributes: new { @class = "btn btn-primary" })
+                            </div>
+                        </div>
+                        <div id="getMost"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section _Footer
+{
+    <script src="~/Areas/admin/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/admin/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Areas/admin/Content/js/demo/datatables-demo.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            function getMost() {
+                var CategoryId = $('#category4').val();
+                $.ajax({
+                    url: '@Url.Action("getMost", "Most")',
+                    type: "GET",
+                    data: { id: CategoryId },
+                    success: function (data) {
+                        $("#getMost").html(data);
+                    },
+                    error: function (data) {
+                        alert("something went wrong.");
+                    }
+                });
+            }
+            getMost();
+            $("#category4").change(function () {
+                getMost();
+            })
+        });
+    </script>
+
+}
+
+

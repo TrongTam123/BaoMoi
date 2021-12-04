@@ -1,0 +1,167 @@
+﻿@model BaoMoi.Models.NewsTiep
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="col text-center" style="background-color:red;color:white;font-style:oblique;">
+                <h2>Xoá banner1 </h2>
+
+            </div>
+            <!-- /.panel-heading -->
+            <div class="row">
+                <div class="col-md-2">
+                    Tiêu đề
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.name)
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-2">
+                    Hình ảnh
+                </div>
+                <div class="col-md-10">
+                    <img src="~/Content/upload/img/news/@Model.img" width="150px" />
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-2">
+                    Link
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.link)
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-2">
+                    Ngày sự kiện
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.description)
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-2">
+                    Meta
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.meta)
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-2">
+                    Ẩn/hiện
+                </div>
+                <div class="col-md-10">
+                    @(Model.hide.GetValueOrDefault(false) ? "Hiển thị" : "Ẩn")
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-2">
+                    Thứ tự bài viết
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.order)
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-2">
+                    Ngày viết
+                </div>
+                <div class="col-md-10">
+                    @(Model.datebegin.HasValue ? Model.datebegin.Value.ToString("dd/MM/yyyy") : "")
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-2">
+                    Title bài viết
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.title)
+                </div>
+            </div>
+            <br />
+
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    Miêu tả bài viết
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.chitietup)
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-2">
+                    Chi tiết bài viết trên
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.chitietup1)
+                </div>
+            </div>
+            <br />
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    Chi tiết bài viết dưới
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.chitietdown)
+                </div>
+            </div>
+            <br />
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                            <a href="@Url.Action("Index","NewsTieps")">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>Quay lại
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-actions no-color">
+                            <input style="color:red" ; type="submit" value="Delete" class="btn btn-default" />
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+<!-- /.col-lg-12 -->

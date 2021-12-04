@@ -1,0 +1,71 @@
+﻿@model BaoMoi.Models.category1
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading" style="background-color:#4378d3;color:white;font-style:oblique;">
+                <div class="col text-center">
+                    <h2>Chi tiết category News</h2>
+
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.name)
+                    </dd>
+
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.meta)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.meta)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.hide)
+                    </dt>
+
+                    <dd>
+                        @(Model.hide.GetValueOrDefault(false) ? "Hiển thị" : "Ẩn")
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.order)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.order)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.datebegin)
+                    </dt>
+
+                    <dd>
+                        @(Model.datebegin.HasValue ? Model.datebegin.Value.ToString("dd/MM/yyyy") : "")
+                    </dd>
+
+                </dl>
+
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

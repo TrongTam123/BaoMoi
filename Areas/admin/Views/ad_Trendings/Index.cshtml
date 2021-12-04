@@ -1,0 +1,72 @@
+﻿@using BaoMoi.Help
+@model BaoMoi.Models.category
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+@section _Header
+{
+
+    <link href="~/Areas/admin/Content/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+}
+<div class="col text-center">
+    <h2>Quản lí Trending</h2>
+</div>
+<hr />
+<div id="wrapper">
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <div class="container-fluid">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="bs-example" style="text-align:right; padding-bottom:10px;">
+                            <div class="btn-group">
+                                @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.Category, " --- Tất cả sản phẩm --- ",
+                                                                                new { @class = "form-control", @id = "category" })
+                            </div>
+                            <div class="btn-group">
+                                @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm mới", "Create", "Create", "ad_Trendings", routeValues: new { }, htmlAttributes: new { @class = "btn btn-primary" })
+                            </div>
+                        </div>
+                        <div id="get_ad_Trendings"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section _Footer
+{
+    <script src="~/Areas/admin/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/admin/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Areas/admin/Content/js/demo/datatables-demo.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            function get_ad_Trendings() {
+                var CategoryId = $('#category').val();
+                $.ajax({
+                    url: '@Url.Action("get_ad_Trendings", "ad_Trendings")',
+                    type: "GET",
+                    data: { id: CategoryId },
+                    success: function (data) {
+                        $("#get_ad_Trendings").html(data);
+                    },
+                    error: function (data) {
+                        alert("something went wrong.");
+                    }
+                });
+            }
+            get_ad_Trendings();
+            $("#category").change(function () {
+                get_ad_Trendings();
+            })
+        });
+    </script>
+
+}

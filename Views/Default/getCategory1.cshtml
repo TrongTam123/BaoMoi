@@ -1,0 +1,10 @@
+﻿@model List<BaoMoi.Models.category1>
+
+@foreach (var i in Model) {
+    <div>
+        <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4"><a href="@ViewBag.meta/@i.meta/">@i.name</a></div>
+    </div>
+    <div class="owl-carousel owl-theme" id="slider2">
+        @Html.Action("getNewNew", "Default", new { id = @i.id});
+    </div>
+}

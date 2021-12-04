@@ -1,0 +1,9 @@
+﻿@model IEnumerable<BaoMoi.Models.menu>
+
+@foreach (var i in Model)
+{
+    <a href="/@i.meta" class="footer_last_part_menu">@i.name</a>
+    
+}
+
+

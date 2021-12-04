@@ -1,0 +1,10 @@
+﻿@model List<BaoMoi.Models.Tag>
+
+@foreach (var i in Model)
+{
+
+<a href="/@ViewBag.meta/@i.meta/@i.id" class="fh5co_tagg">@i.name</a>
+
+
+}
+

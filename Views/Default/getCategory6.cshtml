@@ -1,0 +1,16 @@
+﻿@model List<BaoMoi.Models.category6>
+
+@foreach (var i in Model)
+{
+    <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom pt-5 pb-2 mb-4  text-white">@i.name</div>
+     </div>
+        <div>
+            <div class="owl-carousel owl-theme" id="slider3">
+                
+                    @Html.Action("getVideo", "Default", new { id = i.id })
+                
+            </div>
+        </div>
+}
+

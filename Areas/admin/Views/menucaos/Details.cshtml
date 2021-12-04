@@ -1,0 +1,94 @@
+﻿@model BaoMoi.Models.menucao
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col text-center" style="background-color:#4378d3;color:white;font-style:oblique;">
+                <h2>Chi tiết menu </h2>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-2" style="font-style:oblique" ;>
+                    Tên Menu:
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.name)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2" style="font-style:oblique" ;>
+                    Link:
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.link)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2" style="font-style:oblique" ;>
+                    Meta:
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.meta)
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-md-2" style="font-style:oblique" ;>
+                    Ản/Hiện
+                </div>
+                <div class="col-md-10">
+                    @(Model.hide.GetValueOrDefault(false) ? "Hiển thị" : "Ẩn")
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-md-2" style="font-style:oblique" ;>
+                    Vị trí hiển thị
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.order)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2" style="font-style:oblique" ;>
+                    Ngày viết
+                </div>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.datebegin)
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <a href="@Url.Action("Index","menucaos")">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>Quay lại
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id })
+                </div>
+            </div>
+            <p>
+
+
+            </p>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+<!-- /.col-lg-12 -->

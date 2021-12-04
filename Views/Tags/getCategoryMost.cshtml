@@ -1,0 +1,16 @@
+﻿
+@model List<BaoMoi.Models.category4>
+
+@foreach (var i in Model)
+{
+    if (i.id == 2)
+    {
+    <div>
+        <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4"><a href="@ViewBag.meta/@i.meta/">@i.name</a></div>
+    </div>
+    <div class="row pb-3">
+        @Html.Action("getMost", "Blogs", new { id = i.id });
+    </div>
+    }
+}
+

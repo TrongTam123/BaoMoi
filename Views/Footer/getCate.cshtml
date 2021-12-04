@@ -1,0 +1,8 @@
+﻿@model IEnumerable<BaoMoi.Models.Tag>
+
+@foreach (var i in Model)
+{
+    <li><a href="/@ViewBag.meta/@i.meta/@i.id" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; @i.name</a></li>
+    
+}
+
